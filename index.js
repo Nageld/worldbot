@@ -4,6 +4,7 @@ const { CommandoClient } = require('discord.js-commando');
 const client = new CommandoClient({
   commandPrefix: '!',
   owner: ['175714457723338752', '185069144184455168'], // Book and Visco
+  unknownCommandResponse: false,
 });
 
 client.registry
@@ -12,8 +13,9 @@ client.registry
   .registerDefaultCommands();
 
 client.once('ready', () => {
-  console.log(`===== WorldBot v${process.env.npm_package_version} ready =====`);
-  console.log(`Logged in as ${client.user.tag} (${client.user.id})`);
+  const botVersion = process.env.npm_package_version ? ` v${process.env.npm_package_version}` : '';
+  console.log(`===== WorldBot${botVersion} ready =====`);
+  console.log(`Logged in as '${client.user.tag}' (${client.user.id})`);
 });
 
 // spams with huge objects but can be used for logging

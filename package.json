@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "start:dev": "nodemon index.js"
+    "start:dev": "nodemon index.js",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "bufferutil": "^4.0.1",
@@ -16,6 +17,8 @@
   },
   "devDependencies": {
     "eslint": "^6.7.2",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "nodemon": "^2.0.1"
   },
   "eslintConfig": {
@@ -129,5 +132,15 @@
       "spaced-comment": "error",
       "yoda": "error"
     }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "engines": {
+    "yarn": "1.19.*",
+    "node": "10.*"
   }
 }

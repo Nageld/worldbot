@@ -1,0 +1,133 @@
+{
+  "name": "worldbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Nageld/worldbot.git",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "bufferutil": "^4.0.1",
+    "discord.js": "^11.5.1",
+    "discord.js-commando": "^0.10.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "nodemon": "^2.0.1"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2019
+    },
+    "rules": {
+      "arrow-spacing": [
+        "error",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
+      "brace-style": [
+        "error",
+        "1tbs",
+        {
+          "allowSingleLine": false
+        }
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "comma-spacing": "error",
+      "comma-style": "error",
+      "curly": [
+        "error",
+        "all"
+      ],
+      "dot-location": [
+        "error",
+        "property"
+      ],
+      "handle-callback-err": "off",
+      "indent": [
+        "error",
+        2
+      ],
+      "max-nested-callbacks": [
+        "error",
+        {
+          "max": 4
+        }
+      ],
+      "max-statements-per-line": [
+        "error",
+        {
+          "max": 2
+        }
+      ],
+      "no-console": "off",
+      "no-empty-function": "error",
+      "no-floating-decimal": "error",
+      "no-lonely-if": "error",
+      "no-multi-spaces": "error",
+      "no-multiple-empty-lines": [
+        "error",
+        {
+          "max": 2,
+          "maxEOF": 1,
+          "maxBOF": 0
+        }
+      ],
+      "no-shadow": [
+        "error",
+        {
+          "builtinGlobals": false,
+          "allow": [
+            "err",
+            "resolve",
+            "reject"
+          ]
+        }
+      ],
+      "no-trailing-spaces": [
+        "warn"
+      ],
+      "no-var": "error",
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "prefer-const": "error",
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "space-before-blocks": "error",
+      "space-before-function-paren": [
+        "error",
+        {
+          "anonymous": "never",
+          "named": "never",
+          "asyncArrow": "always"
+        }
+      ],
+      "space-in-parens": "error",
+      "space-infix-ops": "error",
+      "space-unary-ops": "error",
+      "spaced-comment": "error",
+      "yoda": "error"
+    }
+  }
+}

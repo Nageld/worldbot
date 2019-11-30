@@ -1,0 +1,114 @@
+[
+   {
+      "Boss":"Owl",
+      "Attribute":"風 wind",
+      "Name":"Great Sword Of The Tree Spirit",
+      "MaxHP":"385",
+      "MaxAtk":"143",
+      "Skill":"Upon using skill, wind character skill gauge +6% [MAX +12%]"
+   },
+   {
+      "Boss":"Lich",
+      "Attribute":"風 wind",
+      "Name":"Root of Evil Sword",
+      "MaxHP":"396",
+      "MaxAtk":"141",
+      "Skill":"When entire party is floating, wind characters attack +20% [MAX +40%]"
+   },
+   {
+      "Boss":"Lich",
+      "Attribute":"風 wind",
+      "Name":"Lich King Axe",
+      "MaxHP":"660",
+      "MaxAtk":"168",
+      "Skill":"When entire party is floating, wind characters attack +30% [MAX +60%]"
+   },
+   {
+      "Boss":"Golem",
+      "Attribute":"火 fire",
+      "Name":"Hardened Techniques",
+      "MaxHP":"495",
+      "MaxAtk":"121",
+      "Skill":"Resistance to wind +5% / Power flip damage +40% [MAX +10%/+80%]"
+   },
+   {
+      "Boss":"Golem",
+      "Attribute":"火 fire",
+      "Name":"Ancient Shield",
+      "MaxHP":"825",
+      "MaxAtk":"135",
+      "Skill":"Resistance to wind +7.5% / Power flip damage +5% every 5 flips (up to 50%) [MAX + 15%/10%/Up to 100%]"
+   },
+   {
+      "Boss":"Crabby",
+      "Attribute":"水 water",
+      "Name":"Shellfish Sword",
+      "MaxHP":"374",
+      "MaxAtk":"146",
+      "Skill":"While HP above 60%, water character attack +17.5% [MAX +35%]"
+   },
+   {
+      "Boss":"Crabby",
+      "Attribute":"水 water",
+      "Name":"Tide Cane",
+      "MaxHP":"645",
+      "MaxAtk":"171",
+      "Skill":"While HP above 60%, water character attack +25% [MAX +50%]"
+   },
+   {
+      "Boss":"Demon",
+      "Attribute":"闇 dark",
+      "Name":"Cursed Axe",
+      "MaxHP":"363",
+      "MaxAtk":"148",
+      "Skill":"Dark character attack +10% / When hp below 60%, attack +25% [MAX +20%/+50%]"
+   },
+   {
+      "Boss":"Demon",
+      "Attribute":"闇 dark",
+      "Name":"Plague Bow",
+      "MaxHP":"660",
+      "MaxAtk":"168",
+      "Skill":"Dark character attack +15% / When hp below 60%, attack +35% [MAX +30%/+60%]"
+   },
+   {
+      "Boss":"Tiger",
+      "Attribute":"雷 lightning",
+      "Name":"Baihu Bow",
+      "MaxHP":"495",
+      "MaxAtk":"121",
+      "Skill":"Whenever a Lightning character activates a skill, skill damage +12.5% (Up to 62.5%) [MAX +25%/125%]"
+   },
+   {
+      "Boss":"Tiger",
+      "Attribute":"雷 lightning",
+      "Name":"Tiger King Axe",
+      "MaxHP":"480",
+      "MaxAtk":"204",
+      "Skill":"Whenever a Lightning character activates a skill, skill damage +20% (Up to 100%) [MAX +40%/200%]"
+   },
+   {
+      "Boss":"Administer",
+      "Attribute":"光 light",
+      "Name":"Destroyer",
+      "MaxHP":"374",
+      "MaxAtk":"146",
+      "Skill":"During fever, light character attack +35% [MAX +70%]"
+   },
+   {
+      "Boss":"Administer",
+      "Attribute":"光 light",
+      "Name":"Scripture",
+      "MaxHP":"660",
+      "MaxAtk":"168",
+      "Skill":"During fever, light character attack +50% [MAX +100%]"
+   },
+   {
+      "Boss":"Orochi",
+      "Attribute":"-",
+      "Name":"Serpentine Sword",
+      "MaxHP":"363",
+      "MaxAtk":"148",
+      "Skill":"While party has penetration effect, attack +17.5% [MAX +35%]"
+   }
+]

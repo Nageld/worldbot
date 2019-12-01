@@ -1,25 +1,53 @@
+const path = require('path');
 const { RichEmbed } = require('discord.js');
 const moment = require('moment-timezone');
 
+const group = path.parse(__filename).name;
+
 const help = {
   name: 'help',
-  aliases: ['help', 'commands', 'h'],
-  group: 'first',
+  group,
+  aliases: ['commands', 'h'],
   memberName: 'help',
-  description: 'Provides a list of the bot commands',
+  description: 'Prints out this message.',
   execute(message) {
-    // TODO: Dynamically gather command info
-    // https://discordjs.guide/command-handling/adding-features.html#a-dynamic-help-command
+    const user = message.client.user;
+    const orderedCommands = {};
+    const commands = { uncategorized: [] };
+    message.client.commands.forEach((c) => {
+      if (c.group) {
+        c.group in commands ? commands[c.group].push(c) : commands[c.group] = [c];
+      } else {
+        commands.uncategorized.push(c);
+      }
+    });
+    Object.keys(commands).sort().forEach(key => {
+      const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+      orderedCommands[capitalizedKey] = commands[key].sort((a, b) => a.name > b.name ? 1 : -1).filter(c => !c.hidden);
+    });
+
     const embed = new RichEmbed()
-      .setTitle('Commands')
+      .setTitle(`${user.username} commands list`)
+      .setThumbnail(user.avatarURL)
       .setDescription('All commands can be abbreviated')
-      .addField('!bosses', 'Lists all bosses and their weapons', true)
-      .addField('!character [Character Name]', 'Lists information about the given character', true)
-      .addField('!weapon [Weapon Name]', 'Lists information about the given weapon(Only has boss weapons atm).', true)
-      .addField('!translations', 'Links Doli\'s Translation Sheet', true)
-      .addField('!rotation', 'Shows the daily material dungeon schedule', true)
-      .addField('!guide', 'Links LilyCat\'s Beginner Progression Guide', true)
       .setTimestamp();
+    Object.keys(orderedCommands).forEach((k) => {
+      if (orderedCommands[k].length > 0) {
+        embed.addField('Group', `**${k}**`);
+        orderedCommands[k].forEach((c) => {
+          const prefix = process.env.PREFIX;
+          let commandName = `${prefix}${c.name}`;
+          if (c.aliases) {
+            commandName = `${commandName}, ` + c.aliases.map(a => `${prefix}${a}`).join(', ');
+          }
+          embed.addField(commandName, c.description, true);
+        });
+      }
+    });
+    // not yet implemented
+    // .addField('!bosses', 'Lists all bosses and their weapons', true)
+    // .addField('!character [Character Name]', 'Lists information about the given character', true)
+    // .addField('!weapon [Weapon Name]', 'Lists information about the given weapon(Only has boss weapons atm).', true)
 
     return message.channel.send(embed);
   },
@@ -27,6 +55,7 @@ const help = {
 
 const ping = {
   name: 'ping',
+  group,
   description: 'Ping!',
   async execute(message) {
     const msg = await message.channel.send('Pong!');

@@ -1,4 +1,5 @@
 const { RichEmbed } = require('discord.js');
+const moment = require('moment-timezone');
 
 const help = {
   name: 'help',
@@ -29,7 +30,8 @@ const ping = {
   description: 'Ping!',
   async execute(message) {
     const msg = await message.channel.send('Pong!');
-    return msg.edit('Pong! Time taken: NEED TO CALC');
+    const pingTime = moment(msg.createdTimestamp).diff(moment());
+    return msg.edit(`Pong! Time taken: ${pingTime}ms`);
   },
 };
 

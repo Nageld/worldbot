@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { CommandoClient } = require('discord.js-commando');
+const path = require('path');
 
 const client = new CommandoClient({
   commandPrefix: '!',
@@ -7,10 +8,14 @@ const client = new CommandoClient({
   unknownCommandResponse: false,
 });
 
+
 client.registry
   .registerDefaultTypes()
   .registerDefaultGroups()
-  .registerDefaultCommands();
+  .registerGroups([
+    ['first', 'Your First Command Group'],
+  ])
+  .registerCommandsIn(path.join(__dirname, 'commands'));
 
 client.once('ready', () => {
   const botVersion = process.env.npm_package_version ? ` v${process.env.npm_package_version}` : '';

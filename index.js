@@ -7,6 +7,9 @@ const prefix = process.env.PREFIX;
 
 client.commands = new Discord.Collection();
 
+global.CharacterData = require('./data/Characters');
+global.BossWeaponsData = require('./data/BossWeapons');
+
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {

@@ -31,4 +31,13 @@ const tls = {
   },
 };
 
-module.exports = [rotation, guide, tls];
+const test = {
+  name: 'dump',
+  execute(message) {
+    const charas = global.CharacterData.map(char => char.ENName).join(', ');
+
+    return message.channel.send(charas);
+  },
+};
+
+module.exports = [rotation, guide, tls, test];

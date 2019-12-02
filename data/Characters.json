@@ -9,7 +9,9 @@
       "Ability1": "Lightning characters' attack + 15%",
       "Ability2": "Whenever Lightning characters activates a skill, fever gauge +25",
       "Ability3": "[Main] During fever mode, own attack +200%",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/inaho.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/inaho.gif"
    },
    {
       "Attribute": "火 fire",
@@ -21,7 +23,9 @@
       "Ability1": "Power Flip damage +30%",
       "Ability2": "Every 5 flips, attack +10% [MAX +60%]",
       "Ability3": "[Main] Number of combos required for power flip lv3 reduced by 5, increase power flip damage by 30%",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/wagner.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/wagner.gif"
    },
    {
       "Attribute": "雷 lightning",
@@ -30,10 +34,12 @@
       "Role": "Staff / Heal",
       "LeaderBuff": "【Cutest in the World!】\nLightning characters' hp +10% ,attack  +20%, skill damage +60%",
       "Skills": "Ars Magna\nThrusts Ouroboros forward to deal lightning damage to all enemies around it, and restores HP",
-      "Ability1": "Whenever you activate a skill, party heals for +5% hp [MAX +25%]",
+      "Ability1": "Whenever you activate a skill, increase healing received by the party +5% [MAX +25%]",
       "Ability2": "Each time you recover hp, own skill damage +20% [MAX +100%]",
       "Ability3": "[Main] Upon revival, recover 30% skill gauge and 15% max hp",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/cagliostro.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/cagliostro.gif"
    },
    {
       "Attribute": "光 light",
@@ -41,11 +47,13 @@
       "ENName": "Nephteim",
       "Role": "Special / Buff Fever",
       "LeaderBuff": "【Starry Night】\nLight characters' attack  +40% / Fever mode time +30%",
-      "Skills": "Amu Rea\nCalls down metorites that explodes, increases light damage \u0026 fever gauge upon impact",
+      "Skills": "Amu Rea\nCalls down metorites that explodes, increases light damage & fever gauge upon impact",
       "Ability1": "Fever mode time +20%",
       "Ability2": "Damage to enemies during break +25%",
       "Ability3": "[Main] During fever mode, party's light character attack +60% / Fever gauge +25 when party character recovers hp",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/nephteim.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/nephteim.gif"
    },
    {
       "Attribute": "風 wind",
@@ -57,31 +65,37 @@
       "Ability1": "Self attack +30%",
       "Ability2": "At 10+ combos, self attack +80%",
       "Ability3": "[Main] Double direct attacks with bonus 20% attack",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/silty.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/silty.gif"
    },
    {
       "Attribute": "火 fire",
       "JPName": "マリーナ",
       "ENName": "Marina",
       "Role": "Sword / Flip Pierce",
-      "LeaderBuff": "【Charisma Captain】\nFire characters' hp + 15%, attack +30% / Every 20 flips, fire characters' attack +5% (up to 25%)",
+      "LeaderBuff": "【Charisma Captain】\nFire characters' hp + 15%, attack +30% / Every 20 flips, fire characters' attack +5% [MAX 25%]",
       "Skills": "Calls a pirate ship that deals fire damage to enemies at the top of the field, and summons mini pirates as extra pin-balls to the field.",
       "Ability1": "Self attack +30%",
-      "Ability2": "Every 20 flips, self attack +12% [MAX +60%] \u0026 multiball attack +6% [MAX +30%]",
-      "Ability3": "[Main] Every 20 flips, penetration effect \u0026 power flip damage +50% for 5s",
-      "Rarity": "5"
+      "Ability2": "Every 20 flips, self attack +12% [MAX +60%] & multiball attack +6% [MAX +30%]",
+      "Ability3": "[Main] Every 20 flips, penetration effect & power flip damage +50% for 5s",
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/marina.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/marina.gif"
    },
    {
       "Attribute": "火 fire",
       "JPName": "クラリス",
       "ENName": "Clarisse",
-      "Role": "Sword / Debuff Nuke",
+      "Role": "Special / Debuff Nuke",
       "LeaderBuff": "【Clarisse-chan Kawaii!☆】\nFire characters' skill damage +125%",
-      "Skills": "Alchemic Flare\nExploooosion! Deals huge fire damage, inflicts fire resistance down \u0026 dispels 1 buff from surrounding enemies",
+      "Skills": "Alchemic Flare\nExploooosion! Deals huge fire damage, inflicts fire resistance down & dispels 1 buff from surrounding enemies",
       "Ability1": "During battle start, skill damage +10%, skill gauge +80%",
       "Ability2": "Whenever you activate a skill, self skill damage +40% [MAX +120%]",
       "Ability3": "[Main] Every 5 enemies defeated, skill gauge +15%",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/clarisse.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/clarisse.gif"
    },
    {
       "Attribute": "光 light",
@@ -93,19 +107,23 @@
       "Ability1": "When HP is above 80%, attack + 75%",
       "Ability2": "Whenever you recover HP, attack power +10% [MAX +60%]",
       "Ability3": "[Main] While HP is above 80%, light characters' attack power +80%",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/eclair.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/eclair.gif"
    },
    {
       "Attribute": "光 light",
       "JPName": "ラーゼルト",
       "ENName": "Lazaret",
       "Role": "Sword / Buff Debuff Tank",
-      "LeaderBuff": "【Heir to the throne's pride】\nBuffs all light characters with attack power +4% [Max 40%], HP recovers over time, dark resistance +1.5% [Max 15%] ",
+      "LeaderBuff": "【Heir to the throne's pride】\nLight character attack +40% / Whenever a Light character is healed, that character gains attack +4% [Max 40%] and Dark resistance +1.5% [Max 15%] ",
       "Skills": "Shell Embryo Extends the iron wall shield to the entire party, buff entire party with +weakness resistance, +attack power, +all element resistance, +regeneration effect ",
       "Ability1": "While another character's HP is above 80%, that character's attack +60%",
       "Ability2": "Every 10 damage instances taken, party attack +30% for 10s",
       "Ability3": "[Main] HP +30%, Take damage for other party members",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/lazaret.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/lazaret.gif"
    },
    {
       "Attribute": "水 water",
@@ -117,7 +135,9 @@
       "Ability1": "Every 30 combos, attack +10% [Max +60%]",
       "Ability2": "Increase attack buff time +50%",
       "Ability3": "[Main] While buffed, you can direct attack twice, overall damage +50%",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/sonya.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/sonya.gif"
    },
    {
       "Attribute": "風 wind",
@@ -129,7 +149,9 @@
       "Ability1": "Wind character's HP +10%",
       "Ability2": "While whole party is floating, wind characters attack +30%",
       "Ability3": "[Main] When party member's hp falls below 60%, heal that member for 30% (Activates only once)",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/philia.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/philia.gif"
    },
    {
       "Attribute": "水 water",
@@ -141,19 +163,23 @@
       "Ability1": "Self hp + 40%",
       "Ability2": "Self poison damage +90%",
       "Ability3": "[Main] Water characters attack +25% to poisoned enemies",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/suizen.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/suizen.gif"
    },
    {
       "Attribute": "風 wind",
       "JPName": "ムラクモ",
       "ENName": "Murakumo",
       "Role": "Sword / Nuke Float",
-      "LeaderBuff": "【】\nWind characters' attack +40% \u0026 skill gauge +30% at the start of the battle",
-      "Skills": "Buffs self attack and deal massive damage to enemies with break effect",
-      "Ability1": "At the start of the battle, attack +?% for 30s [MAX +60%]",
-      "Ability2": "Enemy break bar depletion +480% [MAX +600%]",
+      "LeaderBuff": "【】\nWind characters' attack +40% & skill gauge +30% at the start of the battle",
+      "Skills": "Buffs self attack & to enemies with break effect",
+      "Ability1": "At the start of the battle, attack +30% for 30s [MAX +60%]",
+      "Ability2": "Enemy break bar depletion +300% [MAX +600%]",
       "Ability3": "[Main] During fever mode, float effect for 7.5s [MAX 15s]",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/murakumo.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/murakumo.gif"
    },
    {
       "Attribute": "風 wind",
@@ -165,7 +191,9 @@
       "Ability1": "Take damage for the character in your third slot / HP +15%",
       "Ability2": "Each 30 combo, power flip damage +10% [MAX +60%]",
       "Ability3": "[Main] Every 3 damage instance taken, attack +20% [MAX +80%]",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/leon.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/leon.gif"
    },
    {
       "Attribute": "闇 dark",
@@ -177,7 +205,9 @@
       "Ability1": "Self attack +30%",
       "Ability2": "When Dark characters HP below 50%, attack +30%",
       "Ability3": "[Main] When HP below 50%, self skill damage +250%",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/bercetia.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/bercetia.gif"
    },
    {
       "Attribute": "闇 dark",
@@ -189,7 +219,9 @@
       "Ability1": "Self attack +30%",
       "Ability2": "When party has penetration effect, self attack +60%",
       "Ability3": "[Main] Attack +30%, Bonus 25% damage to \"Beast\", \"Spirit\", \"Dragon\", \"Plant\" and \"Immortal\" enemies",
-      "Rarity": "5"
+      "Rarity": "5",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/veron.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/veron.gif"
    },
    {
       "Attribute": "火 fire",
@@ -198,10 +230,12 @@
       "Role": "Sword",
       "LeaderBuff": "【Road Among the Stars】\nFor every character of a different Attribute in the party, party attack +7% [MAX +42%]",
       "Skills": "Meteo Break\nA shockwave bursts forth from Arc's sword, deals fire damage in a small area around Arc. Increases party attack.\n",
-      "Ability1": "Party attack +5% [MAX +10%]\n",
-      "Ability2": "At the start of battle, self skill gauge +50% [MAX +100%]",
-      "Ability3": "[Main] Whenever Arc's skill is used, self attack +15% (up to +60%) [MAX +30%/+120%] ",
-      "Rarity": "4"
+      "Ability1": "Party attack +10%\n",
+      "Ability2": "At the start of battle, self skill gauge +100%",
+      "Ability3": "[Main] Whenever Arc's skill is used, self attack +30% [MAX +120%] ",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/arc.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/arc.gif"
    },
    {
       "Attribute": "火 fire",
@@ -213,7 +247,9 @@
       "Ability1": "Self attack +25%",
       "Ability2": "Whenever entire party gets a penetration buff, self attack +7% [MAX 35%]  / Damage to [Dragon] enemies +10% \n",
       "Ability3": "[Main] Every 5 power flips, gain a penetration buff for 3 seconds / Damage to [Dragon] enemies +15%\n",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/azel.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/azel.gif"
    },
    {
       "Attribute": "火 fire",
@@ -223,9 +259,11 @@
       "LeaderBuff": "【Queen by Nature】\nWhen you have 2 or more [Dragon] characters in the party, party attack +65%",
       "Skills": "Legion Rampage\nSummons Bianca's pet dragon that breathes fire down the entire map, dealing Fire damage and inflicting Fire resistance debuff",
       "Ability1": "Leader attack +25%",
-      "Ability2": "Leader damage to enemies with [Weakness] +15%\n\n",
+      "Ability2": "Leader damage to enemies with elemental weakness +15%\n\n",
       "Ability3": "[Main] [Dragon] character attack +40%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/bianca.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/bianca.gif"
    },
    {
       "Attribute": "火 fire",
@@ -237,7 +275,9 @@
       "Ability1": "Whenever you reach 30 combo, self attack +8%  [MAX 40%]",
       "Ability2": "Every 20 flips, Fire characters recover 3% of max HP up to 5 times.\n",
       "Ability3": "[Main] Whenever you activate Hanabi's skill, her attacks hit twice and self attack +40% for 10 seconds.",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/hanabi.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/hanabi.gif"
    },
    {
       "Attribute": "火 fire",
@@ -249,7 +289,9 @@
       "Ability1": "Self attack +25%",
       "Ability2": "Whenever you defeat 5 enemies, self attack +6% [MAX 60%]\n",
       "Ability3": "[MAIN] The combo amount needed for a Lvl 3 power flip -3 and self attack +40%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/asukirimaru.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/asukirimaru.gif"
    },
    {
       "Attribute": "火 fire",
@@ -261,7 +303,9 @@
       "Ability1": "Power Flip  Damage +25%",
       "Ability2": "Whenever Glide has an attack buff, Power Flip damage +50%",
       "Ability3": "[Main]The combo amount needed for a Lvl 3 power flip -3 and Power Flip damage +40%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/glide.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/glide.gif"
    },
    {
       "Attribute": "水 water",
@@ -273,7 +317,9 @@
       "Ability1": "When self HP over 50%, party attack +15%",
       "Ability2": "Whenever Yowel has an attack buff, party attack +20%",
       "Ability3": "[Main] Water character damage versus enemies with [Slow] +20%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/yowel.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/yowel.gif"
    },
    {
       "Attribute": "水 water",
@@ -285,7 +331,9 @@
       "Ability1": "Water characters HP +8%",
       "Ability2": "\nWhenever Water characters are at 60% HP or higher, attack +20%\n",
       "Ability3": "[Main] If a character other than Riesel's HP drops below 50%, heal that character by 35% of their max HP. [Once per battle]",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/riesel.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/riesel.gif"
    },
    {
       "Attribute": "水 water",
@@ -296,8 +344,10 @@
       "Skills": "Tidal Wave\nShoots a water stream straight ahead that deals water damage and increases fever gauge",
       "Ability1": "During Fever mode, Water character attack +35%\n",
       "Ability2": "Whenever Amelia's HP is 60% or higher, Water character attack +20%\n",
-      "Ability3": "[MAIN] Whenever fever mode is triggered, recover 18% of Amelia's max HP.",
-      "Rarity": "4"
+      "Ability3": "[Main] Whenever fever mode is triggered, recover 18% of Amelia's max HP.",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/amelia.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/amelia.gif"
    },
    {
       "Attribute": "水 water",
@@ -308,8 +358,10 @@
       "Skills": "Alice's Wonderland Umbrella\nBatter enemies in one direction with a water-powered umbrella, deals water damage to enemies in one direction / Grants [Float] to all allies.",
       "Ability1": "Whenever the entire party has the [Float], self attack +50%\n",
       "Ability2": "Whenever Alice's HP is 80% or higher, self attack +55%\n",
-      "Ability3": "[MAIN] Every time Alice recovers HP, self attack +15% [MAX 90%]",
-      "Rarity": "4"
+      "Ability3": "[Main] Every time Alice recovers HP, self attack +15% [MAX 90%]",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/alice.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/alice.gif"
    },
    {
       "Attribute": "水 water",
@@ -321,7 +373,9 @@
       "Ability1": "Power flip damage +25%\n",
       "Ability2": "While Sharon has an attack buff, power flip damage +50%\n",
       "Ability3": "[Main] Combo amount required for Lvl 3 power flilp -3 and power flip damage +40%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/sharon.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/sharon.gif"
    },
    {
       "Attribute": "水 water",
@@ -333,19 +387,23 @@
       "Ability1": "Whenever the entire party has [Penetration], self attack + 50%",
       "Ability2": "Whenever the entire party has [Float], self attack +50%",
       "Ability3": "[Main] Whenever you have a 15 combo or higher, self attack +100%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/lanner.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/lanner.gif"
    },
    {
       "Attribute": "雷 lightning",
       "JPName": "ラムス",
-      "ENName": "Ramzes",
+      "ENName": "Rams",
       "Role": "Special",
       "LeaderBuff": "【Dreams of Unity】\nLightning character skill damage +100%",
       "Skills": "Thor's Hammer\nLightning strikes nearest enemy and deals Lightning damage to nearby enemies. (Deals extra damage to enemies with [Paralyze])",
       "Ability1": "Self skill damage +50%",
       "Ability2": "Whenever Rams's skill activates, self skill damage +30% [MAX +120%]",
       "Ability3": "[Main] Whenever Rams's skill activates, entire party skill damage +30% [MAX +120%]",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/rams.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/rams.gif"
    },
    {
       "Attribute": "雷 lightning",
@@ -357,7 +415,9 @@
       "Ability1": "Whenever Lunalu's skill activates, self skill gauge +50% [Once per battle]",
       "Ability2": "Damage versus enemies with [Paralyze] +20%",
       "Ability3": "[Main] Lightning character's damage versus enemies with  [Paralyze] +20%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/lunalu.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/lunalu.gif"
    },
    {
       "Attribute": "雷 lightning",
@@ -369,7 +429,9 @@
       "Ability1": "Whenever Regis's skill activates, self skill gauge +50% [Once per battle]",
       "Ability2": "Self skill damage +30% / While Fever mode is active, self skill damage +70%",
       "Ability3": "[Main] Self skill damage +30% / Whenever you activate Fever mode,  self skill gauge +50%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/regis.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/regis.gif"
    },
    {
       "Attribute": "雷 lightning",
@@ -381,7 +443,9 @@
       "Ability1": "Self attack +25%",
       "Ability2": "Whenever your combo reaches 30, self attack +10% [MAX 40%]",
       "Ability3": "[Main] Whenever you activate Eleanor's skill, her attacks hit twice and that total damage gains +40% for 10 seconds.",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/eleanor.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/eleanor.gif"
    },
    {
       "Attribute": "雷 lightning",
@@ -393,7 +457,9 @@
       "Ability1": "Self damage versus [Undead] enemies +30%",
       "Ability2": "Self damage versus [Undead] enemies +30%",
       "Ability3": "[Main] Lightning character damage versus enemies with [Break] or [Down] +20%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/jei.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/jei.gif"
    },
    {
       "Attribute": "雷 lightning",
@@ -405,7 +471,9 @@
       "Ability1": "Self attack +35% / At the start of battle, Mino receives 20% of Max HP as damage",
       "Ability2": "When Mino's HP is 50% or less, self attack +50%",
       "Ability3": "[Main] When Mino's HP is 50% or less, self attack +100%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/mino.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/mino.gif"
    },
    {
       "Attribute": "風 wind",
@@ -417,7 +485,9 @@
       "Ability1": "Self attack +25%",
       "Ability2": "Whenever you power flip 5 times, power flip damage +10% [MAX 50%]",
       "Ability3": "[Main] Self attack +40%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/shiro.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/shiro.gif"
    },
    {
       "Attribute": "風 wind",
@@ -429,7 +499,9 @@
       "Ability1": "Self HP +15% / Mana received +5%",
       "Ability2": "Whenever your combo reaches 30, party attack +15% for 12 seconds. ",
       "Ability3": "[Main] Whenever Mia hits an enemy directly 10 times, Wind character attack +6% [MAX 60%]",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/mia.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/mia.gif"
    },
    {
       "Attribute": "風 wind",
@@ -441,7 +513,9 @@
       "Ability1": "Self HP +15%",
       "Ability2": "Whenever the entire party has [Float], Wind character attack +15% / Self Lightning resistance +10%",
       "Ability3": "[Main] Receive all damage taken by your 3rd character / Self Lightning resistance +30%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/orouru\n.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/orouru\n.gif"
    },
    {
       "Attribute": "風 wind",
@@ -453,7 +527,9 @@
       "Ability1": "At the start of battle,  self attack +25% for 60 seconds.",
       "Ability2": "Self damage versus with enemies with [Break] or [Down] +20%",
       "Ability3": "[Main] At the start of battle, self skill gauge +70% / Whenever Soushiro's skill activates, self attack +20% [MAX 80%]",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/soushiro.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/soushiro.gif"
    },
    {
       "Attribute": "風 wind",
@@ -465,7 +541,9 @@
       "Ability1": "Self HP +15%",
       "Ability2": "Whenever your combo reaches 50, Mercel recovers 5% of her max HP. [10 times per battle]",
       "Ability3": "[Main] When Mercel's HP is 60% or higher, Wind character damage +45%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/mercel/mersel\n.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/mercel/mersel\n.gif"
    },
    {
       "Attribute": "風 wind",
@@ -477,7 +555,9 @@
       "Ability1": "Whenever your combo is 10 or higher, self attack +45% / [Paralyze] Immunity",
       "Ability2": "Whenever Helga takes damage 5 times, her direct attacks hit twice and total damage +40% for 5 seconds. ",
       "Ability3": "[Main] Whenever your combo reaches 30, self attack +10% [MAX 50%] and Lightning resistance +5% [MAX 25%]",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/helga.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/helga.gif"
    },
    {
       "Attribute": "風 wind",
@@ -489,7 +569,9 @@
       "Ability1": "Party healing received +10%",
       "Ability2": "Whenever your combo reaches 30, Arisa heals 1% of her max HP [20 times per battle]",
       "Ability3": "[Main] Whenever your combo is 15 or higher, self skill damage +250%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/arisa.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/arisa.gif"
    },
    {
       "Attribute": "光 light",
@@ -501,7 +583,9 @@
       "Ability1": "Fever mode duration +15%",
       "Ability2": "Whenever Fever mode is active, party attack +35%",
       "Ability3": "[Main] Whenever you activate Fever mode, Light characters gain [Regenerate] for 5 seconds [180 healing]",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/dia.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/dia.gif"
    },
    {
       "Attribute": "光 light",
@@ -513,7 +597,9 @@
       "Ability1": "Jelal receives all damage taken by the Leader character / Self HP +12%",
       "Ability2": "Whenever Jelal's HP is 50% or less, self resistance to all Attributes +25%",
       "Ability3": "[Main] Whenever Jelal takes damage 5 times, self attack +15% [MAX 75%] and Dark resistance +5% [MAX 25%]",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/jelal.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/jelal.gif"
    },
    {
       "Attribute": "光 light",
@@ -525,7 +611,9 @@
       "Ability1": "Whenever Eliya's skill activates, self attack +5% [MAX 25%] and skill gauge +10%",
       "Ability2": "Whenever Eliya recovers HP, self skill damage +18% [MAX 90%]",
       "Ability3": "[Main] Whenever a Light character's skill activates, self skill damage +12% [MAX 60%] and self skill gauge +10%",
-      "Rarity": "4"
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/eliya.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/eliya.gif"
    },
    {
       "Attribute": "光 light",
@@ -535,9 +623,11 @@
       "LeaderBuff": "- When Light character's HP is at 60% or above, increase that character's Attack +50% and elemental resistance +30%\n",
       "Skills": "Light damage infront of self, refresh effect for the whole party, attack buff for whole party",
       "Ability1": "When HP is 60% or above, increase own attack damage +40%",
-      "Ability2": "Every time attack power is buffed, regain 2.5% HP [UP TO 10 TIMES PER BATTLE]",
-      "Ability3": "[MAIN] When HP is 60% or above, light character's attack power +45%",
-      "Rarity": "4"
+      "Ability2": "Every time attack power is buffed, regain 2.5% HP up to 10 times per battle",
+      "Ability3": "[Main] When HP is 60% or above, light character's attack power +45%",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/fin.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/fin.gif"
    },
    {
       "Attribute": "光 light",
@@ -545,58 +635,68 @@
       "ENName": "Kira",
       "Role": "Sword",
       "LeaderBuff": "- Light characters attack power +50%",
-      "Skills": "light damage in the direction of travel, facing the nearest enemy. Damage increases according to number of buffs on self",
+      "Skills": "Light damage in the direction of travel, facing the nearest enemy. Damage increases according to number of buffs on self",
       "Ability1": "Own attack power +25%",
       "Ability2": "When she recovers HP, attack power +6% [MAX 60%]",
-      "Ability3": "[MAIN] When affected with attack buff, increase own attack power +70% / When affected with recovery buff, increase own skill damage +70%",
-      "Rarity": "4"
+      "Ability3": "[Main] When affected with attack buff, increase own attack power +70% / When affected with recovery buff, increase own skill damage +70%",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/kira.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/kira.gif"
    },
    {
       "Attribute": "闇 dark",
       "JPName": "アルム",
       "ENName": "Alm / Arum",
       "Role": "Fists",
-      "LeaderBuff": "(NON UPGRADED)\n- When Dark character's HP is 50% or less, that character's attack power +85%\n",
-      "Skills": "summons shadows that deal dark damage when they hit enemies and damages self",
-      "Ability1": "Sacrifices 20% of max HP at the start of battle and gains 17.5% attack power",
-      "Ability2": "When HP is 50% or below , +25% attack power",
-      "Ability3": "[MAIN]  When HP is 50% or below, Multi-ball attack +30% and self attack +40%",
-      "Rarity": "4"
+      "LeaderBuff": "When Dark character's HP is 50% or less, that character's attack power +110%\n",
+      "Skills": "Summons shadows that deal dark damage when they hit enemies and damages self",
+      "Ability1": "Sacrifices 35% of max HP at the start of battle and gains 20% attack power",
+      "Ability2": "When HP is 50% or below , +50% attack power",
+      "Ability3": "[Main] When HP is 50% or below, Multi-ball attack +80% and self attack +60%",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/alm / arum.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/alm / arum.gif"
    },
    {
       "Attribute": "闇 dark",
       "JPName": "マリアンネ",
       "ENName": "Marianne",
       "Role": "Bow",
-      "LeaderBuff": "- Dark Characters skill damage +60% \n- Damage dealt to weakened enemies +10%",
-      "Skills": "fires a narrow beam towards the nearest enemy, dealing dark damage that increases according to the number of combos, and inflicts dark resist down",
+      "LeaderBuff": "- Dark Characters skill damage +60% \n- Damage dealt to elemental disadvantage enemies +10%",
+      "Skills": "Fires a narrow beam towards the nearest enemy, dealing dark damage that increases according to the number of combos, and inflicts dark resist down",
       "Ability1": "Dark characters attack power +12%",
       "Ability2": "Whenever you activate a skill, skill damage of dark element characters +20% [MAX 60%]",
-      "Ability3": "[MAIN] When you activate a skill, skill gauge +100% [Once per Battle]",
-      "Rarity": "4"
+      "Ability3": "[Main] When you activate a skill, skill gauge +100% [Once per Battle]",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/marianne.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/marianne.gif"
    },
    {
       "Attribute": "闇 dark",
       "JPName": "アンディ",
       "ENName": "Andy",
       "Role": "Special",
-      "LeaderBuff": "- Dark characters HP +20% and attack +20%",
-      "Skills": "fire 4 projectiles in a croww that deal dark damage that increases according to the number of knocked out allies and reduces enemy attack)",
-      "Ability1": "Dark characters coffin revival hits -2 and skill damage +15%",
+      "LeaderBuff": "Dark characters HP +20% and attack +20%",
+      "Skills": "Fire 4 projectiles in a X cross that deals dark damage that increases according to the number of knocked out allies and reduces enemy attack",
+      "Ability1": "Dark party characters' required coffin revival hits -2 and skill damage +15%",
       "Ability2": "+10% damage dealt to enemies with Reduced Darkness resist debuffs by Dark Characters'+",
-      "Ability3": "[MAIN] Whenever a character is revived, that character's skill damage +50% [MAX 150%] and recovers 10% of max HP",
-      "Rarity": "4"
+      "Ability3": "[Main] Whenever a character is revived, that character's skill damage +50% [MAX 150%] and recovers 10% of max HP",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/andy.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/andy.gif"
    },
    {
       "Attribute": "闇 dark",
       "JPName": "リアン",
       "ENName": "Lian",
       "Role": "Bow",
-      "LeaderBuff": "- Dark Characters attack +50%",
+      "LeaderBuff": "Dark Characters attack +50%",
       "Skills": "Surrounds himself with swords that deal dark damage around him and inflicts enemies with slow effect",
       "Ability1": "Everytime the whole party has a penetration effect, attack power +10% [MAX 50%]",
       "Ability2": "Whenever a dark character uses a skill, own skill gauge +8%",
-      "Ability3": "[MAIN] Penetration effect for 5 seconds everytime own skills are used",
-      "Rarity": "4"
+      "Ability3": "[Main] Penetration effect for 5 seconds everytime own skills are used",
+      "Rarity": "4",
+      "ImageURL": "https://worldbot.s3.us-east-2.amazonaws.com/char/lian.png",
+      "GifURL": "https://worldbot.s3.us-east-2.amazonaws.com/gif/lian.gif"
    }
 ]

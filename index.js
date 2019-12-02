@@ -9,6 +9,7 @@ client.commands = new Discord.Collection();
 
 global.CharacterData = require('./data/Characters');
 global.BossWeaponsData = require('./data/BossWeapons');
+let timer = 0;
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -41,12 +42,18 @@ client.on('message', (message) => {
   if (!command) {
     return;
   }
-
-  try {
-    command.execute(message, args);
-  } catch (error) {
-    console.error(error);
-    message.channel.send('There was an error trying to execute that command!');
+  if (message.channel == '648762883613917194' || Date.now() > timer) {
+    try {
+      command.execute(message, args);
+    } catch (error) {
+      console.error(error);
+      if (message.channel == '648762883613917194') {
+        message.channel.send('There was an error trying to execute that command!');
+      }
+    }
+    if (message.channel != '648762883613917194') {
+      timer = Date.now() + 10000;
+    }
   }
 });
 

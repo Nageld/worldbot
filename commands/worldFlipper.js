@@ -1,6 +1,5 @@
 const path = require('path');
 const { Attachment, RichEmbed } = require('discord.js');
-const fs = require('fs');
 
 const group = path.parse(__filename).name;
 
@@ -37,15 +36,15 @@ const tls = {
   },
 };
 
-const test = {
-  name: 'dump',
-  hidden: true,
-  execute(message) {
-    const charas = global.CharacterData.map(char => char.ENName).join(', ');
+// const test = {
+//   name: 'dump',
+//   hidden: true,
+//   execute(message) {
+//     const charas = global.CharacterData.map(char => char.ENName).join(', ');
 
-    return message.channel.send(charas);
-  },
-};
+//     return message.channel.send(charas);
+//   },
+// };
 
 const character = {
   name: 'char',
@@ -59,26 +58,58 @@ const character = {
     }
     const unit = global.CharacterData.find(char => char.ENName.toLowerCase() == chars.toLowerCase());
     if (!unit) {
-      return;
+      return message.channel.send('No Character Found!');
     }
-    const location = './assets/chars/' + unit.ENName.toLowerCase() + '.png';
 
-    const thumbnail = fs.existsSync(location) ? new Attachment(location, 'char.png') : null;
+    const filter = (reaction, user) => {
+      return ['🎨', 'ℹ️', '🎥'].includes(reaction.emoji.name) && user.id === message.author.id;
+    };
+    return message.channel.send(infoEmbed(unit))
+      .then(msg => {
+        msg.react('🎨')
+          .then(() => msg.react('ℹ️'))
+          .then(() => msg.react('🎥'));
+        const collector = msg.createReactionCollector(filter, { max: 10, time: 15000 });
+        collector.on('collect', r => {
+          if (r.emoji.name == '🎨') {
+            msg.edit(artEmbed(unit));
+          }
+          if (r.emoji.name == 'ℹ️') {
+            msg.edit(infoEmbed(unit));
 
-    const embed = new RichEmbed()
-      .setTitle(unit.ENName + ' ' + unit.JPName)
-      .setDescription('**Attribute: **' + unit.Attribute + '\n**Leader Skill:**' + unit.LeaderBuff + '\n**Active Skill:**' + unit.Skills)
-      .addField('Ability 1', unit.Ability1, true)
-      .addField('Ability 2', unit.Ability2, true)
-      .addField('Ability 3', unit.Ability3, true)
-      .setFooter(unit.Role);
-    if (thumbnail) {
-      embed
-        .attachFile(thumbnail)
-        .setThumbnail('attachment://char.png');
-    }
-    return message.channel.send(embed);
+          }
+          if (r.emoji.name == '🎥') {
+            msg.edit(gifEmbed(unit));
+          }
+        });
+      });
   },
 };
 
-module.exports = [rotation, guide, tls, test, character];
+function infoEmbed(unit) {
+  const embed = new RichEmbed()
+    .setTitle(unit.ENName + ' ' + unit.JPName)
+    .setDescription('**Attribute: **' + unit.Attribute + '\n**Leader Skill:**' + unit.LeaderBuff + '\n**Active Skill:**' + unit.Skills)
+    .addField('Ability 1', unit.Ability1, true)
+    .addField('Ability 2', unit.Ability2, true)
+    .addField('Ability 3', unit.Ability3, true)
+    .setThumbnail(unit.ImageURL)
+    .setFooter(unit.Role);
+  return embed;
+}
+
+function artEmbed(unit) {
+  const embed = new RichEmbed()
+    .setTitle(unit.ENName + ' ' + unit.JPName)
+    .setImage(unit.ImageURL);
+  return embed;
+}
+
+function gifEmbed(unit) {
+  const embed = new RichEmbed()
+    .setTitle(unit.ENName + ' ' + unit.JPName)
+    .setImage(unit.GifURL);
+  return embed;
+}
+
+module.exports = [rotation, guide, tls, character];

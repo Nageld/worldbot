@@ -1,5 +1,6 @@
 const path = require('path');
-const { Attachment } = require('discord.js');
+const { Attachment, RichEmbed } = require('discord.js');
+const fs = require('fs');
 
 const group = path.parse(__filename).name;
 
@@ -46,4 +47,38 @@ const test = {
   },
 };
 
-module.exports = [rotation, guide, tls, test];
+const character = {
+  name: 'char',
+  group,
+  aliases: ['c', 'character'],
+  description: 'Lists information about the given character.',
+  execute(message) {
+    const chars = message.content.split(' ')[1] ? message.content.split(' ')[1].toLowerCase() : null;
+    if (!chars) {
+      return;
+    }
+    const unit = global.CharacterData.find(char => char.ENName.toLowerCase() == chars.toLowerCase());
+    if (!unit) {
+      return;
+    }
+    const location = './assets/chars/' + unit.ENName.toLowerCase() + '.png';
+
+    const thumbnail = fs.existsSync(location) ? new Attachment(location, 'char.png') : null;
+
+    const embed = new RichEmbed()
+      .setTitle(unit.ENName + ' ' + unit.JPName)
+      .setDescription('**Attribute: **' + unit.Attribute + '\n**Leader Skill:**' + unit.LeaderBuff + '\n**Active Skill:**' + unit.Skills)
+      .addField('Ability 1', unit.Ability1, true)
+      .addField('Ability 2', unit.Ability2, true)
+      .addField('Ability 3', unit.Ability3, true)
+      .setFooter(unit.Role);
+    if (thumbnail) {
+      embed
+        .attachFile(thumbnail)
+        .setThumbnail('attachment://char.png');
+    }
+    return message.channel.send(embed);
+  },
+};
+
+module.exports = [rotation, guide, tls, test, character];

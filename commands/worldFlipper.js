@@ -73,7 +73,7 @@ const character = {
   aliases: ['c', 'character'],
   description: 'Lists information about the given character.',
   async execute(message, args) {
-    const chara = args.length ? args[1].toLowerCase() : null;
+    const chara = args.length ? args[0].toLowerCase() : null;
     // can be moved to index.js:47
     if (!chara) {
       return message.channel.send(`No character name supplied! Usage: ${this.usage()}`);
@@ -102,6 +102,8 @@ const character = {
         msg.edit(getGifEmbed(unit));
       }
     });
+
+    collector.on('end', () => msg.clearReactions());
   },
 };
 

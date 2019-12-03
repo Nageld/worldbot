@@ -3,13 +3,15 @@ const fs = require('fs');
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
-const prefix = process.env.PREFIX;
+const prefix = process.env.PREFIX || '!!';
+const timeout = parseInt(process.env.TIMEOUT, 10) || 10000;
 
 client.commands = new Discord.Collection();
 
 global.CharacterData = require('./data/Characters');
 global.BossWeaponsData = require('./data/BossWeapons');
-let timer = 0;
+
+const timeoutAsync = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -29,7 +31,7 @@ client.once('ready', () => {
 });
 
 
-client.on('message', (message) => {
+client.on('message', async (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) {
     return;
   }
@@ -42,17 +44,16 @@ client.on('message', (message) => {
   if (!command) {
     return;
   }
-  if (message.channel.id === '648762883613917194' || Date.now() > timer) {
-    try {
-      command.execute(message, args);
-    } catch (error) {
-      console.error(error);
-      if (message.channel.id === '648762883613917194') {
-        message.channel.send('There was an error trying to execute that command!');
-      }
-    }
+
+  try {
     if (message.channel.id !== '648762883613917194') {
-      timer = Date.now() + 10000;
+      await timeoutAsync(timeout);
+    }
+    command.execute(message, args);
+  } catch (error) {
+    console.error(error);
+    if (message.channel.id === '648762883613917194') {
+      message.channel.send('There was an error trying to execute that command!');
     }
   }
 });

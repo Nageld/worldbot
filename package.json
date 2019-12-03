@@ -59,6 +59,7 @@
         "error",
         "property"
       ],
+      "eqeqeq": "error",
       "handle-callback-err": "off",
       "indent": [
         "error",

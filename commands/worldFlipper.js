@@ -3,14 +3,9 @@ const { Attachment, RichEmbed } = require('discord.js');
 
 const group = path.parse(__filename).name;
 
-const getArtEmbed = unit =>
-  new RichEmbed()
-    .setTitle(unit.ENName + ' ' + unit.JPName)
-    .setImage(unit.ImageURL);
-
-const getGifEmbed = unit => new RichEmbed()
+const getArtEmbed = unit => new RichEmbed()
   .setTitle(unit.ENName + ' ' + unit.JPName)
-  .setImage(unit.GifURL);
+  .setImage(unit.ImageURL);
 
 const getInfoEmbed = unit => new RichEmbed()
   .setTitle(unit.ENName + ' ' + unit.JPName)
@@ -18,7 +13,7 @@ const getInfoEmbed = unit => new RichEmbed()
   .addField('Ability 1', unit.Ability1, true)
   .addField('Ability 2', unit.Ability2, true)
   .addField('Ability 3', unit.Ability3, true)
-  .setThumbnail(unit.ImageURL)
+  .setThumbnail(unit.GifURL)
   .setFooter(unit.Role);
 
 const rotation = {
@@ -54,16 +49,6 @@ const tls = {
   },
 };
 
-// const test = {
-//   name: 'dump',
-//   hidden: true,
-//   execute(message) {
-//     const charas = global.CharacterData.map(char => char.ENName).join(', ');
-
-//     return message.channel.send(charas);
-//   },
-// };
-
 const character = {
   name: 'char',
   group,
@@ -84,12 +69,12 @@ const character = {
     }
 
     const filter = (reaction, user) => {
-      return ['🎨', 'ℹ️', '🎥'].includes(reaction.emoji.name) && user.id === message.author.id;
+      return ['🎨', 'ℹ️'].includes(reaction.emoji.name) && user.id === message.author.id;
     };
+
     const msg = await message.channel.send(getInfoEmbed(unit));
     await msg.react('🎨');
     await msg.react('ℹ️');
-    await msg.react('🎥');
     const collector = msg.createReactionCollector(filter, { max: 10, time: 15000 });
     collector.on('collect', r => {
       if (r.emoji.name === '🎨') {
@@ -97,9 +82,6 @@ const character = {
       }
       if (r.emoji.name === 'ℹ️') {
         msg.edit(getInfoEmbed(unit));
-      }
-      if (r.emoji.name === '🎥') {
-        msg.edit(getGifEmbed(unit));
       }
     });
 

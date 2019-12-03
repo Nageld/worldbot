@@ -46,14 +46,24 @@ client.on('message', async (message) => {
   }
 
   try {
+    console.log(`Executing command ${message.content} by @${message.author.tag} ` +
+      `in #${message.channel.name} (${message.channel.guild.name})`);
     if (message.channel.id !== '648762883613917194') {
       await timeoutAsync(timeout);
+    }
+    if (command.args && !args.length) {
+      let reply = 'You didn\'t provide any arguments!';
+      if (command.usage) {
+        reply += `\nUsage ${prefix}${command.name} ${command.usage}`;
+      }
+
+      return message.channel.send(reply);
     }
     command.execute(message, args);
   } catch (error) {
     console.error(error);
     if (message.channel.id === '648762883613917194') {
-      message.channel.send('There was an error trying to execute that command!');
+      return message.channel.send('There was an error trying to execute that command!');
     }
   }
 });

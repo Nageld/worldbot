@@ -50,12 +50,11 @@ const tls = {
 };
 
 const character = {
-  name: 'char',
+  name: 'character',
   group,
-  usage() {
-    return `${process.env.PREFIX}${this.name} <chara name>`;
-  },
-  aliases: ['c', 'character'],
+  args: true,
+  usage: '<chara name>',
+  aliases: ['c', 'char'],
   description: 'Lists information about the given character.',
   async execute(message, args) {
     const chara = args.length ? args[0].toLowerCase() : null;

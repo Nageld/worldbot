@@ -42,16 +42,16 @@ client.on('message', (message) => {
   if (!command) {
     return;
   }
-  if (message.channel.id == '648762883613917194' || Date.now() > timer) {
+  if (message.channel.id === '648762883613917194' || Date.now() > timer) {
     try {
       command.execute(message, args);
     } catch (error) {
       console.error(error);
-      if (message.channel.id == '648762883613917194') {
+      if (message.channel.id === '648762883613917194') {
         message.channel.send('There was an error trying to execute that command!');
       }
     }
-    if (message.channel.id != '648762883613917194') {
+    if (message.channel.id !== '648762883613917194') {
       timer = Date.now() + 10000;
     }
   }

@@ -23,7 +23,9 @@ const help = {
     });
     Object.keys(commands).sort().forEach(key => {
       const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
-      orderedCommands[capitalizedKey] = commands[key].sort((a, b) => a.name > b.name ? 1 : -1).filter(c => !c.hidden);
+      orderedCommands[capitalizedKey] = commands[key]
+        .sort((a, b) => a.name > b.name ? 1 : -1)
+        .filter(c => !c.hidden);
     });
 
     const embed = new RichEmbed()
@@ -46,7 +48,6 @@ const help = {
     });
     // not yet implemented
     // .addField('!bosses', 'Lists all bosses and their weapons', true)
-    // .addField('!character [Character Name]', 'Lists information about the given character', true)
     // .addField('!weapon [Weapon Name]', 'Lists information about the given weapon(Only has boss weapons atm).', true)
 
     return message.channel.send(embed);

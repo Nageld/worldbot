@@ -11,14 +11,20 @@ const getGifEmbed = unit => new RichEmbed()
   .setTitle(unit.ENName + ' ' + unit.JPName)
   .setImage(unit.GifURL);
 
-const getInfoEmbed = unit => new RichEmbed()
-  .setTitle(unit.ENName + ' ' + unit.JPName)
-  .setDescription('**Attribute: **' + unit.Attribute + '\n**Leader Skill:**' + unit.LeaderBuff + '\n**Active Skill:**' + unit.Skills)
-  .addField('Ability 1', unit.Ability1, true)
-  .addField('Ability 2', unit.Ability2, true)
-  .addField('Ability 3', unit.Ability3, true)
-  .setThumbnail(unit.ImageURL)
-  .setFooter(unit.Role);
+const getInfoEmbed = unit => {
+  const rarity = Array(parseInt(unit.Rarity, 10)).fill(':star:').join('');
+  return new RichEmbed()
+    .setTitle(unit.ENName + ' ' + unit.JPName)
+    .setDescription('**Attribute: **' + unit.Attribute
+      + '\n**Leader Skill: **' + unit.LeaderBuff
+      + '\n**Active Skill: **' + unit.Skills
+      + '\n**Rarity: **' + rarity)
+    .addField('Ability 1', unit.Ability1, true)
+    .addField('Ability 2', unit.Ability2, true)
+    .addField('Ability 3', unit.Ability3, true)
+    .setThumbnail(unit.ImageURL)
+    .setFooter(unit.Role);
+};
 
 const rotation = {
   name: 'rotation',

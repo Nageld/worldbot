@@ -60,7 +60,7 @@ const ping = {
   description: 'Ping!',
   async execute(message) {
     const msg = await message.channel.send('Pong!');
-    const pingTime = moment(msg.createdTimestamp).diff(moment());
+    const pingTime = moment(msg.createdTimestamp).diff(moment(message.createdTimestamp));
     return msg.edit(`Pong! Time taken: ${pingTime}ms`);
   },
 };

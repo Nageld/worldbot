@@ -61,30 +61,35 @@ const character = {
   aliases: ['c', 'char'],
   description: 'Lists information about the given character.',
   async execute(message, args) {
+    const artReaction = '🎨';
+    const infoReaction = 'ℹ️';
+    const gifReaction = '🎥';
+    const reactionExpiry = 30000;
+
     const chara = args.length ? args[0].toLowerCase() : null;
 
     const unit = global.CharacterData.find(char => char.ENName.toLowerCase() === chara.toLowerCase());
     if (!unit) {
-      return message.channel.send('No character Found!');
+      return message.channel.send('No character found!');
     }
 
     const filter = (reaction, user) => {
-      return ['🎨', 'ℹ️', '🎥'].includes(reaction.emoji.name) && user.id === message.author.id;
+      return [artReaction, infoReaction, gifReaction].includes(reaction.emoji.name) && user.id === message.author.id;
     };
 
     const msg = await message.channel.send(getInfoEmbed(unit));
-    await msg.react('🎨');
-    await msg.react('ℹ️');
-    await msg.react('🎥');
-    const collector = msg.createReactionCollector(filter, { max: 10, time: 15000 });
+    await msg.react(artReaction);
+    await msg.react(infoReaction);
+    await msg.react(gifReaction);
+    const collector = msg.createReactionCollector(filter, { max: 10, time: reactionExpiry });
     collector.on('collect', r => {
-      if (r.emoji.name === '🎨') {
+      if (r.emoji.name === artReaction) {
         msg.edit(getArtEmbed(unit));
       }
-      if (r.emoji.name === 'ℹ️') {
+      if (r.emoji.name === infoReaction) {
         msg.edit(getInfoEmbed(unit));
       }
-      if (r.emoji.name === '🎥') {
+      if (r.emoji.name === gifReaction) {
         msg.edit(getGifEmbed(unit));
       }
     });

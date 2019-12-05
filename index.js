@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = process.env.PREFIX || '!!';
 const timeout = parseInt(process.env.TIMEOUT, 10) || 10000;
+const botDedicatedChannel = '648762883613917194';
 
 client.commands = new Discord.Collection();
 
@@ -30,7 +31,6 @@ client.once('ready', () => {
   console.log(`Logged in as '${client.user.tag}' (${client.user.id})`);
 });
 
-
 client.on('message', async (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) {
     return;
@@ -48,7 +48,7 @@ client.on('message', async (message) => {
   try {
     console.log(`Executing command ${message.content} by @${message.author.tag} ` +
       `in #${message.channel.name} (${message.channel.guild.name})`);
-    if (message.channel.id !== '648762883613917194') {
+    if (message.channel.id !== botDedicatedChannel) {
       await timeoutAsync(timeout);
     }
     if (command.args && !args.length) {
@@ -62,7 +62,7 @@ client.on('message', async (message) => {
     command.execute(message, args);
   } catch (error) {
     console.error(error);
-    if (message.channel.id === '648762883613917194') {
+    if (message.channel.id === botDedicatedChannel) {
       return message.channel.send('There was an error trying to execute that command!');
     }
   }

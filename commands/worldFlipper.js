@@ -7,13 +7,17 @@ const getArtEmbed = unit => new RichEmbed()
   .setTitle(unit.ENName + ' ' + unit.JPName)
   .setImage(unit.ImageURL);
 
+const getGifEmbed = unit => new RichEmbed()
+  .setTitle(unit.ENName + ' ' + unit.JPName)
+  .setImage(unit.GifURL);
+
 const getInfoEmbed = unit => new RichEmbed()
   .setTitle(unit.ENName + ' ' + unit.JPName)
   .setDescription('**Attribute: **' + unit.Attribute + '\n**Leader Skill:**' + unit.LeaderBuff + '\n**Active Skill:**' + unit.Skills)
   .addField('Ability 1', unit.Ability1, true)
   .addField('Ability 2', unit.Ability2, true)
   .addField('Ability 3', unit.Ability3, true)
-  .setThumbnail(unit.GifURL)
+  .setThumbnail(unit.ImageURL)
   .setFooter(unit.Role);
 
 const rotation = {
@@ -58,22 +62,20 @@ const character = {
   description: 'Lists information about the given character.',
   async execute(message, args) {
     const chara = args.length ? args[0].toLowerCase() : null;
-    // can be moved to index.js:47
-    if (!chara) {
-      return message.channel.send(`No character name supplied! Usage: ${this.usage()}`);
-    }
+
     const unit = global.CharacterData.find(char => char.ENName.toLowerCase() === chara.toLowerCase());
     if (!unit) {
-      return message.channel.send('No Character Found!');
+      return message.channel.send('No character Found!');
     }
 
     const filter = (reaction, user) => {
-      return ['🎨', 'ℹ️'].includes(reaction.emoji.name) && user.id === message.author.id;
+      return ['🎨', 'ℹ️', '🎥'].includes(reaction.emoji.name) && user.id === message.author.id;
     };
 
     const msg = await message.channel.send(getInfoEmbed(unit));
     await msg.react('🎨');
     await msg.react('ℹ️');
+    await msg.react('🎥');
     const collector = msg.createReactionCollector(filter, { max: 10, time: 15000 });
     collector.on('collect', r => {
       if (r.emoji.name === '🎨') {
@@ -81,6 +83,9 @@ const character = {
       }
       if (r.emoji.name === 'ℹ️') {
         msg.edit(getInfoEmbed(unit));
+      }
+      if (r.emoji.name === '🎥') {
+        msg.edit(getGifEmbed(unit));
       }
     });
 

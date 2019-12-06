@@ -3,13 +3,16 @@ const fs = require('fs');
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
-const prefix = process.env.PREFIX;
+const prefix = process.env.PREFIX || '!!';
+const timeout = parseInt(process.env.TIMEOUT, 10) || 10000;
+const botDedicatedChannel = '648762883613917194';
 
 client.commands = new Discord.Collection();
 
 global.CharacterData = require('./data/Characters');
 global.BossWeaponsData = require('./data/BossWeapons');
-let timer = 0;
+
+const timeoutAsync = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -28,8 +31,7 @@ client.once('ready', () => {
   console.log(`Logged in as '${client.user.tag}' (${client.user.id})`);
 });
 
-
-client.on('message', (message) => {
+client.on('message', async (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) {
     return;
   }
@@ -42,17 +44,26 @@ client.on('message', (message) => {
   if (!command) {
     return;
   }
-  if (message.channel.id == '648762883613917194' || Date.now() > timer) {
-    try {
-      command.execute(message, args);
-    } catch (error) {
-      console.error(error);
-      if (message.channel.id == '648762883613917194') {
-        message.channel.send('There was an error trying to execute that command!');
-      }
+
+  try {
+    console.log(`Executing command ${message.content} by @${message.author.tag} ` +
+      `in #${message.channel.name} (${message.channel.guild.name})`);
+    if (message.channel.id !== botDedicatedChannel) {
+      await timeoutAsync(timeout);
     }
-    if (message.channel.id != '648762883613917194') {
-      timer = Date.now() + 10000;
+    if (command.args && !args.length) {
+      let reply = 'You didn\'t provide any arguments!';
+      if (command.usage) {
+        reply += `\nUsage ${prefix}${command.name} ${command.usage}`;
+      }
+
+      return message.channel.send(reply);
+    }
+    command.execute(message, args);
+  } catch (error) {
+    console.error(error);
+    if (message.channel.id === botDedicatedChannel) {
+      return message.channel.send('There was an error trying to execute that command!');
     }
   }
 });

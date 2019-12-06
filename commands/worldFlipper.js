@@ -3,6 +3,29 @@ const { Attachment, RichEmbed } = require('discord.js');
 
 const group = path.parse(__filename).name;
 
+const getArtEmbed = unit => new RichEmbed()
+  .setTitle(unit.ENName + ' ' + unit.JPName)
+  .setImage(unit.ImageURL);
+
+const getGifEmbed = unit => new RichEmbed()
+  .setTitle(unit.ENName + ' ' + unit.JPName)
+  .setImage(unit.GifURL);
+
+const getInfoEmbed = unit => {
+  const rarity = Array(parseInt(unit.Rarity, 10)).fill(':star:').join('');
+  return new RichEmbed()
+    .setTitle(unit.ENName + ' ' + unit.JPName)
+    .setDescription('**Attribute: **' + unit.Attribute
+      + '\n**Leader Skill: **' + unit.LeaderBuff
+      + '\n**Active Skill: **' + unit.Skills
+      + '\n**Rarity: **' + rarity)
+    .addField('Ability 1', unit.Ability1, true)
+    .addField('Ability 2', unit.Ability2, true)
+    .addField('Ability 3', unit.Ability3, true)
+    .setThumbnail(unit.ImageURL)
+    .setFooter(unit.Role);
+};
+
 const rotation = {
   name: 'rotation',
   group,
@@ -36,80 +59,49 @@ const tls = {
   },
 };
 
-// const test = {
-//   name: 'dump',
-//   hidden: true,
-//   execute(message) {
-//     const charas = global.CharacterData.map(char => char.ENName).join(', ');
-
-//     return message.channel.send(charas);
-//   },
-// };
-
 const character = {
-  name: 'char',
+  name: 'character',
   group,
-  aliases: ['c', 'character'],
+  args: true,
+  usage: '<chara name>',
+  aliases: ['c', 'char'],
   description: 'Lists information about the given character.',
-  execute(message) {
-    const chars = message.content.split(' ')[1] ? message.content.split(' ')[1].toLowerCase() : null;
-    if (!chars) {
-      return;
-    }
-    const unit = global.CharacterData.find(char => char.ENName.toLowerCase() == chars.toLowerCase());
+  async execute(message, args) {
+    const artReaction = '🎨';
+    const infoReaction = 'ℹ️';
+    const gifReaction = '🎥';
+    const reactionExpiry = 30000;
+
+    const chara = args.length ? args[0].toLowerCase() : null;
+
+    const unit = global.CharacterData.find(char => char.ENName.toLowerCase() === chara.toLowerCase());
     if (!unit) {
-      return message.channel.send('No Character Found!');
+      return message.channel.send('No character found!');
     }
 
     const filter = (reaction, user) => {
-      return ['🎨', 'ℹ️', '🎥'].includes(reaction.emoji.name) && user.id === message.author.id;
+      return [artReaction, infoReaction, gifReaction].includes(reaction.emoji.name) && user.id === message.author.id;
     };
-    return message.channel.send(infoEmbed(unit))
-      .then(msg => {
-        msg.react('🎨')
-          .then(() => msg.react('ℹ️'))
-          .then(() => msg.react('🎥'));
-        const collector = msg.createReactionCollector(filter, { max: 10, time: 15000 });
-        collector.on('collect', r => {
-          if (r.emoji.name == '🎨') {
-            msg.edit(artEmbed(unit));
-          }
-          if (r.emoji.name == 'ℹ️') {
-            msg.edit(infoEmbed(unit));
 
-          }
-          if (r.emoji.name == '🎥') {
-            msg.edit(gifEmbed(unit));
-          }
-        });
-      });
+    const msg = await message.channel.send(getInfoEmbed(unit));
+    await msg.react(artReaction);
+    await msg.react(infoReaction);
+    await msg.react(gifReaction);
+    const collector = msg.createReactionCollector(filter, { max: 10, time: reactionExpiry });
+    collector.on('collect', r => {
+      if (r.emoji.name === artReaction) {
+        msg.edit(getArtEmbed(unit));
+      }
+      if (r.emoji.name === infoReaction) {
+        msg.edit(getInfoEmbed(unit));
+      }
+      if (r.emoji.name === gifReaction) {
+        msg.edit(getGifEmbed(unit));
+      }
+    });
+
+    collector.on('end', () => msg.clearReactions());
   },
 };
-
-function infoEmbed(unit) {
-  const embed = new RichEmbed()
-    .setTitle(unit.ENName + ' ' + unit.JPName)
-    .setDescription('**Attribute: **' + unit.Attribute + '\n**Leader Skill:**' + unit.LeaderBuff + '\n**Active Skill:**' + unit.Skills)
-    .addField('Ability 1', unit.Ability1, true)
-    .addField('Ability 2', unit.Ability2, true)
-    .addField('Ability 3', unit.Ability3, true)
-    .setThumbnail(unit.ImageURL)
-    .setFooter(unit.Role);
-  return embed;
-}
-
-function artEmbed(unit) {
-  const embed = new RichEmbed()
-    .setTitle(unit.ENName + ' ' + unit.JPName)
-    .setImage(unit.ImageURL);
-  return embed;
-}
-
-function gifEmbed(unit) {
-  const embed = new RichEmbed()
-    .setTitle(unit.ENName + ' ' + unit.JPName)
-    .setImage(unit.GifURL);
-  return embed;
-}
 
 module.exports = [rotation, guide, tls, character];

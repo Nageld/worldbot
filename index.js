@@ -4,15 +4,11 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client();
 const prefix = process.env.PREFIX || '!!';
-const timeout = parseInt(process.env.TIMEOUT, 10) || 10000;
-const botDedicatedChannel = '648762883613917194';
 
 client.commands = new Discord.Collection();
 
 global.CharacterData = require('./data/Characters');
 global.BossWeaponsData = require('./data/BossWeapons');
-
-const timeoutAsync = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -48,9 +44,7 @@ client.on('message', async (message) => {
   try {
     console.log(`Executing command ${message.content} by @${message.author.tag} ` +
       `in #${message.channel.name} (${message.channel.guild.name})`);
-    if (message.channel.id !== botDedicatedChannel) {
-      await timeoutAsync(timeout);
-    }
+
     if (command.args && !args.length) {
       let reply = 'You didn\'t provide any arguments!';
       if (command.usage) {
@@ -59,12 +53,10 @@ client.on('message', async (message) => {
 
       return message.channel.send(reply);
     }
-    command.execute(message, args);
+    return command.execute(message, args);
   } catch (error) {
     console.error(error);
-    if (message.channel.id === botDedicatedChannel) {
-      return message.channel.send('There was an error trying to execute that command!');
-    }
+    // return message.channel.send('There was an error trying to execute that command!');
   }
 });
 

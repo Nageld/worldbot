@@ -124,7 +124,6 @@ const character = {
       const collector = new MessageCollector(message.channel, m => m.author.id === message.author.id, { max: 1, time: 15000 });
       collector.on('collect', m => {
         data[m] ? sendMessage(data[m], message) : null;
-
       });
     } else {
       sendMessage(data[0], message);

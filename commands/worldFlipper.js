@@ -100,7 +100,7 @@ const character = {
   async execute(message, args) {
 
     const chara = args.length ? args.join(' ').toLowerCase() : null;
-    const res = await axios.get('https://worldflipper-api.herokuapp.com/lookup?name=' + chara);
+    const res = await axios.get(`${process.env.API_URL}lookup?name=${chara}`);
     const data = res.data;
 
     if (data.length === 0) {

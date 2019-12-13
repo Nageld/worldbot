@@ -28,7 +28,7 @@ const getInfoEmbed = unit => {
     .setFooter(unit.Role ? unit.Weapon + ' / ' + unit.Role : unit.Weapon);
 };
 
-const sendMessage = async function(unit, message) {
+const sendMessage = async (unit, message) => {
   const artReaction = '🎨';
   const infoReaction = 'ℹ️';
   const gifReaction = '🎥';

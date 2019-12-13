@@ -116,7 +116,7 @@ const character = {
       if (nameExact) {
         return nameExact;
       }
-      return data.map((char, index) => (index + ': ' + char.EnName + ' ' + char.Weapon)).join('\n');
+      return data.map((char, index) => (`${index}: ${char.EnName} ${char.Weapon}`)).join('\n');
     })();
 
     if (typeof unit === 'string') {

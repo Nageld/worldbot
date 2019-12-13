@@ -1,29 +1,60 @@
 const path = require('path');
-const { Attachment, RichEmbed } = require('discord.js');
+const axios = require('axios');
+const { Attachment, RichEmbed, MessageCollector } = require('discord.js');
 
 const group = path.parse(__filename).name;
 
 const getArtEmbed = unit => new RichEmbed()
-  .setTitle(unit.ENName + ' ' + unit.JPName)
-  .setImage(unit.ImageURL);
+  .setTitle(unit.EnName + ' ' + unit.JpName)
+  .setImage(unit.SpriteURL);
 
 const getGifEmbed = unit => new RichEmbed()
-  .setTitle(unit.ENName + ' ' + unit.JPName)
+  .setTitle(unit.EnName + ' ' + unit.JpName)
   .setImage(unit.GifURL);
 
 const getInfoEmbed = unit => {
   const rarity = Array(parseInt(unit.Rarity, 10)).fill(':star:').join('');
   return new RichEmbed()
-    .setTitle(unit.ENName + ' ' + unit.JPName)
-    .setDescription('**Attribute: **' + unit.Attribute
-      + '\n**Leader Skill: **' + unit.LeaderBuff
-      + '\n**Active Skill: **' + unit.Skills
+    .setTitle(unit.EnName + ' ' + unit.JpName)
+    .setDescription('**Attribute: **' + unit.JpAttribute + ' ' + unit.EnAttribute
+      + '\n**Leader Skill: **' + unit.EnLeaderBuff
+      + '\n**Active Skill: **' + unit.EnSkillName + 'Cost: ' + unit.SkillCost
+      + '\n' + unit.EnSkillDesc
       + '\n**Rarity: **' + rarity)
-    .addField('Ability 1', unit.Ability1, true)
-    .addField('Ability 2', unit.Ability2, true)
-    .addField('Ability 3', unit.Ability3, true)
-    .setThumbnail(unit.ImageURL)
-    .setFooter(unit.Role);
+    .addField('Ability 1', unit.EnAbility1, true)
+    .addField('Ability 2', unit.EnAbility2, true)
+    .addField('Ability 3', unit.EnAbility3, true)
+    .setThumbnail(unit.SpriteURL)
+    .setFooter(unit.Role ? unit.Weapon + ' / ' + unit.Role : unit.Weapon);
+};
+
+const sendMessage = async (unit, message) => {
+  const artReaction = '🎨';
+  const infoReaction = 'ℹ️';
+  const gifReaction = '🎥';
+  const reactionExpiry = 30000;
+  const filter = (reaction, user) => {
+    return [artReaction, infoReaction, gifReaction].includes(reaction.emoji.name) && user.id === message.author.id;
+  };
+
+  const msg = await message.channel.send(getInfoEmbed(unit));
+  await msg.react(artReaction);
+  await msg.react(infoReaction);
+  await msg.react(gifReaction);
+  const collector = msg.createReactionCollector(filter, { max: 10, time: reactionExpiry });
+  collector.on('collect', r => {
+    if (r.emoji.name === artReaction) {
+      msg.edit(getArtEmbed(unit));
+    }
+    if (r.emoji.name === infoReaction) {
+      msg.edit(getInfoEmbed(unit));
+    }
+    if (r.emoji.name === gifReaction) {
+      msg.edit(getGifEmbed(unit));
+    }
+  });
+
+  collector.on('end', () => msg.clearReactions());
 };
 
 const rotation = {
@@ -67,40 +98,36 @@ const character = {
   aliases: ['c', 'char'],
   description: 'Lists information about the given character.',
   async execute(message, args) {
-    const artReaction = '🎨';
-    const infoReaction = 'ℹ️';
-    const gifReaction = '🎥';
-    const reactionExpiry = 30000;
 
-    const chara = args.length ? args[0].toLowerCase() : null;
+    const chara = args.length ? args.join(' ').toLowerCase() : null;
+    const res = await axios.get(`${process.env.API_URL}/lookup?name=${chara}`);
+    const data = res.data;
 
-    const unit = global.CharacterData.find(char => char.ENName.toLowerCase() === chara.toLowerCase());
-    if (!unit) {
+    if (data.length === 0) {
       return message.channel.send('No character found!');
     }
 
-    const filter = (reaction, user) => {
-      return [artReaction, infoReaction, gifReaction].includes(reaction.emoji.name) && user.id === message.author.id;
-    };
+    const unit = (function() {
+      if (data.length === 1) {
+        return data[0];
+      }
 
-    const msg = await message.channel.send(getInfoEmbed(unit));
-    await msg.react(artReaction);
-    await msg.react(infoReaction);
-    await msg.react(gifReaction);
-    const collector = msg.createReactionCollector(filter, { max: 10, time: reactionExpiry });
-    collector.on('collect', r => {
-      if (r.emoji.name === artReaction) {
-        msg.edit(getArtEmbed(unit));
+      const nameExact = data.find(char => char.EnName.toLowerCase() === chara);
+      if (nameExact) {
+        return nameExact;
       }
-      if (r.emoji.name === infoReaction) {
-        msg.edit(getInfoEmbed(unit));
-      }
-      if (r.emoji.name === gifReaction) {
-        msg.edit(getGifEmbed(unit));
-      }
-    });
+      return data.map((char, index) => (`${index}: ${char.EnName} ${char.Weapon}`)).join('\n');
+    })();
 
-    collector.on('end', () => msg.clearReactions());
+    if (typeof unit === 'string') {
+      await message.channel.send('Found potential matches:\n```' + unit + '```');
+      const collector = new MessageCollector(message.channel, m => m.author.id === message.author.id, { max: 1, time: 15000 });
+      collector.on('collect', m => {
+        data[m] ? sendMessage(data[m], message) : null;
+      });
+    } else {
+      sendMessage(data[0], message);
+    }
   },
 };
 

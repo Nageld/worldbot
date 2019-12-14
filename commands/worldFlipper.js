@@ -112,8 +112,8 @@ const character = {
         return data[0];
       }
 
-      const nameExact = data.find(char => char.EnName.toLowerCase() === chara);
-      if (nameExact) {
+      const nameExact = data.filter(char => char.EnName.toLowerCase() === chara);
+      if (nameExact.length > 0) {
         return nameExact;
       }
       return data.map((char, index) => (`${index}: ${char.EnName} ${char.Weapon}`)).join('\n');
@@ -126,7 +126,7 @@ const character = {
         data[m] ? sendMessage(data[m], message) : null;
       });
     } else {
-      sendMessage(data[0], message);
+      sendMessage(unit[0], message);
     }
   },
 };

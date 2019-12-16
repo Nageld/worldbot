@@ -1,5 +1,6 @@
 const path = require('path');
 const axios = require('axios');
+const moment = require('moment-timezone');
 const { Attachment, RichEmbed, MessageCollector } = require('discord.js');
 
 const group = path.parse(__filename).name;
@@ -98,7 +99,6 @@ const character = {
   aliases: ['c', 'char'],
   description: 'Lists information about the given character.',
   async execute(message, args) {
-
     const chara = args.length ? args.join(' ').toLowerCase() : null;
     const res = await axios.get(`${process.env.API_URL}/lookup?name=${chara}`);
     const data = res.data;
@@ -116,12 +116,16 @@ const character = {
       if (nameExact) {
         return nameExact;
       }
+
       return data.map((char, index) => (`${index}: ${char.EnName} ${char.Weapon}`)).join('\n');
     })();
 
     if (typeof unit === 'string') {
       await message.channel.send('Found potential matches:\n```' + unit + '```');
-      const collector = new MessageCollector(message.channel, m => m.author.id === message.author.id, { max: 1, time: 15000 });
+      const collector = new MessageCollector(message.channel, m => m.author.id === message.author.id, {
+        max: 1,
+        time: 15000,
+      });
       collector.on('collect', m => {
         data[m] ? sendMessage(data[m], message) : null;
       });
@@ -131,4 +135,26 @@ const character = {
   },
 };
 
-module.exports = [rotation, guide, tls, character];
+const time = {
+  name: 'time',
+  group,
+  aliases: ['t', 'times'],
+  description: 'Shows relative times to some events.',
+  async execute(message) {
+    const jpTz = 'Asia/Tokyo';
+    const now = moment().tz(jpTz);
+    const dailyReset = moment.duration(moment().tz(jpTz).add(1, 'd').startOf('day').hour(5).diff(now));
+    const monthlyReset = moment().tz(jpTz).add(1, 'months').startOf('month').startOf('day').hour(5).fromNow();
+
+    const embed = new RichEmbed()
+      .setTitle(`Current time ${now.format('YYYY-MM-DD HH:mm zz')}`)
+      .setDescription('JST is the main time sync source for the weebs all around the world.')
+      .addField('Daily reset - 05:00 JST', `In ${dailyReset.hours()} hours and ${dailyReset.minutes()} minutes`)
+      .addField('Monthly reset - 05:00 JST first day of the month',
+        monthlyReset.charAt(0).toUpperCase() + monthlyReset.slice(1));
+
+    return message.channel.send(embed);
+  },
+};
+
+module.exports = [rotation, guide, tls, character, time];

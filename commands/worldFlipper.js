@@ -18,7 +18,7 @@ const getInfoEmbed = unit => {
     .setTitle(unit.EnName + ' ' + unit.JpName)
     .setDescription('**Attribute: **' + unit.JpAttribute + ' ' + unit.EnAttribute
       + '\n**Leader Skill: **' + unit.EnLeaderBuff
-      + '\n**Active Skill: **' + unit.EnSkillName + 'Cost: ' + unit.SkillCost
+      + '\n**Active Skill: **' + unit.EnSkillName + (unit.SkillCost ? ' **Cost: **' + unit.SkillCost : '')
       + '\n' + unit.EnSkillDesc
       + '\n**Rarity: **' + rarity)
     .addField('Ability 1', unit.EnAbility1, true)
@@ -109,7 +109,7 @@ const character = {
 
     const unit = (function() {
       if (data.length === 1) {
-        return data[0];
+        return data;
       }
 
       const nameExact = data.filter(char => char.EnName.toLowerCase() === chara);

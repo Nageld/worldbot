@@ -109,7 +109,7 @@ const character = {
 
     const unit = (function() {
       if (data.length === 1) {
-        return data[0];
+        return data;
       }
 
       const nameExact = data.filter(char => char.EnName.toLowerCase() === chara);

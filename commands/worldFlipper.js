@@ -100,6 +100,9 @@ const character = {
   async execute(message, args) {
 
     const chara = args.length ? args.join(' ').toLowerCase() : null;
+    if (chara.length < 2) {
+      return message.channel.send('Search too short please have a minimum of 2 letters!');
+    }
     const res = await axios.get(`${process.env.API_URL}/lookup?name=${chara}`);
     const data = res.data;
 

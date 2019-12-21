@@ -128,8 +128,10 @@ const character = {
       collector.on('collect', m => {
         if(typeof data[m - 1] !== 'undefined') {
           sendMessage(data[m - 1], message);
-          matches.delete();
-          m.delete();
+          Promise.all([
+            matches.delete(),
+            m.delete(),
+          ]);
         }
       });
     } else {

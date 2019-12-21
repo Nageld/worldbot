@@ -100,6 +100,9 @@ const character = {
   async execute(message, args) {
 
     const chara = args.length ? args.join(' ').toLowerCase() : null;
+    if (chara.length < 2) {
+      return message.channel.send('Search too short please have a minimum of 2 letters!');
+    }
     const res = await axios.get(`${process.env.API_URL}/lookup?name=${chara}`);
     const data = res.data;
 
@@ -116,14 +119,20 @@ const character = {
       if (nameExact.length > 0) {
         return nameExact;
       }
-      return data.map((char, index) => (`${index}: ${char.EnName} ${char.Weapon}`)).join('\n');
+      return data.map((char, index) => (`${parseInt(index, 10) + 1}: ${char.EnName} ${char.Weapon}`)).join('\n');
     })();
 
     if (typeof unit === 'string') {
-      await message.channel.send('Found potential matches:\n```' + unit + '```');
+      const matches = await message.channel.send('Found potential matches:\n```' + unit + '```');
       const collector = new MessageCollector(message.channel, m => m.author.id === message.author.id, { max: 1, time: 15000 });
       collector.on('collect', m => {
-        data[m] ? sendMessage(data[m], message) : null;
+        if(typeof data[m - 1] !== 'undefined') {
+          sendMessage(data[m - 1], message);
+          Promise.all([
+            matches.delete(),
+            m.delete(),
+          ]);
+        }
       });
     } else {
       sendMessage(unit[0], message);

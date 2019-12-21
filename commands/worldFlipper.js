@@ -103,7 +103,7 @@ const character = {
     if (chara.length < 2) {
       return message.channel.send('Search too short please have a minimum of 2 letters!');
     }
-    const res = await axios.get(`${process.env.API_URL}/lookup?name=${chara}`);
+    const res = await axios.get(`${process.env.API_URL}/lookup?name=${encodeURI(chara)}`);
     const data = res.data;
 
     if (data.length === 0) {

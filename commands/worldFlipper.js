@@ -16,7 +16,7 @@ const getInfoEmbed = (unit, units) => {
   const rarity = Array(parseInt(unit.Rarity, 10)).fill(':star:').join('');
   let footer = unit.Role ? unit.Weapon + ' / ' + unit.Role : unit.Weapon;
 
-  if(units && units.length > 1) {
+  if (units && units.length > 1) {
     // passed data has multiple units
     // add info to footer
     footer += '\nMultiple versions available:\n';
@@ -61,14 +61,14 @@ const sendMessage = async (result, message) => {
   };
 
   // add reactions based on available data
-  if(unit.GifURL) {
+  if (unit.GifURL) {
     await msg.react(gifReaction);
   }
-  if(unit.SpriteURL) {
+  if (unit.SpriteURL) {
     await msg.react(artReaction);
   }
-  if(result.versions) {
-    for(let i = 0; i < result.versions.length; i++) {
+  if (result.versions) {
+    for (let i = 0; i < result.versions.length; i++) {
       await msg.react(verReaction[i]);
     }
   }
@@ -84,7 +84,7 @@ const sendMessage = async (result, message) => {
       // replace info with gif
       msg.edit(getGifEmbed(unit));
     }
-    if(result.versions && verReaction.indexOf(r.emoji.name) > -1) {
+    if (result.versions && verReaction.indexOf(r.emoji.name) > -1) {
       // replace info with version based on reaction
       // replace unit data
       unit = result.versions[verReaction.indexOf(r.emoji.name)];
@@ -92,14 +92,14 @@ const sendMessage = async (result, message) => {
       msg.edit(getInfoEmbed(unit, result.versions));
       // clear current reaction and add them again
       msg.clearReactions().then(async () => {
-        if(unit.GifURL) {
+        if (unit.GifURL) {
           await msg.react(gifReaction);
         }
-        if(unit.SpriteURL) {
+        if (unit.SpriteURL) {
           await msg.react(artReaction);
         }
-        if(result.versions) {
-          for(let i = 0; i < result.versions.length; i++) {
+        if (result.versions) {
+          for (let i = 0; i < result.versions.length; i++) {
             await msg.react(verReaction[i]);
           }
         }
@@ -158,10 +158,10 @@ const character = {
     const res = await axios.get(`${process.env.API_URL}/lookup1.1?name=${encodeURI(chara)}`);
     const data = res.data;
 
-    if(data.unit) {
+    if (data.unit) {
       // matches single result
       sendMessage(data, message);
-    } else if(data.matches && data.matches.length > 0) {
+    } else if (data.matches && data.matches.length > 0) {
       // matches multiple results
       // send potential matches to channel
       const options = await message.channel.send('Found potential matches:\n```' +
@@ -172,7 +172,7 @@ const character = {
       // on user input
       collector.on('collect', m => {
         // make sure data exists
-        if(typeof data[m - 1] !== 'undefined') {
+        if (typeof data[m - 1] !== 'undefined') {
           // data exists, send unit data over
           sendMessage({ unit: data[m - 1] }, message);
           // delete query and input
@@ -187,7 +187,7 @@ const character = {
       });
       // remove options on no user input
       collector.on('end', collected => {
-        if(collected && collected.size === 0) {
+        if (collected && collected.size === 0) {
           options.edit('No potential match selected.');
         }
       });

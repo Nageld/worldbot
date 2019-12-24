@@ -12,48 +12,100 @@ const getGifEmbed = unit => new RichEmbed()
   .setTitle(unit.EnName + ' ' + unit.JpName)
   .setImage(unit.GifURL);
 
-const getInfoEmbed = unit => {
+const getInfoEmbed = (unit, units) => {
   const rarity = Array(parseInt(unit.Rarity, 10)).fill(':star:').join('');
+  let footer = unit.Role ? unit.Weapon + ' / ' + unit.Role : unit.Weapon;
+
+  if(units && units.length > 1) {
+    // passed data has multiple units
+    // add info to footer
+    footer += '\nMultiple versions available:\n';
+    footer += units.map((char, index) => (`${parseInt(index, 10) + 1}: ${char.EnName} ${char.Weapon}`)).join('\n');
+  }
+
   return new RichEmbed()
     .setTitle(unit.EnName + ' ' + unit.JpName)
     .setDescription('**Attribute: **' + unit.JpAttribute + ' ' + unit.EnAttribute
-      + '\n**Leader Skill: **' + unit.EnLeaderBuff
-      + '\n**Active Skill: **' + unit.EnSkillName + (unit.SkillCost ? ' **Cost: **' + unit.SkillCost : '')
-      + '\n' + unit.EnSkillDesc
-      + '\n**Rarity: **' + rarity)
+    + '\n**Leader Skill: **' + unit.EnLeaderBuff
+    + '\n**Active Skill: **' + unit.EnSkillName + (unit.SkillCost ? ' **Cost: **' + unit.SkillCost : '')
+    + '\n' + unit.EnSkillDesc
+    + '\n**Rarity: **' + rarity)
     .addField('Ability 1', unit.EnAbility1, true)
     .addField('Ability 2', unit.EnAbility2, true)
     .addField('Ability 3', unit.EnAbility3, true)
     .setThumbnail(unit.SpriteURL)
-    .setFooter(unit.Role ? unit.Weapon + ' / ' + unit.Role : unit.Weapon);
+    .setFooter(footer);
 };
 
-const sendMessage = async (unit, message) => {
+const sendMessage = async (result, message) => {
+  const msg = await message.channel.send(getInfoEmbed(result.unit, result.versions));
+  let unit = result.unit;
   const artReaction = '🎨';
   const infoReaction = 'ℹ️';
   const gifReaction = '🎥';
+  // alt version reactions
+  const verReaction = [
+    '1️⃣',
+    '2️⃣',
+    '3️⃣',
+    '4️⃣',
+    '5️⃣',
+    '6️⃣',
+    '7️⃣',
+    '8️⃣',
+    '9️⃣',
+  ];
   const reactionExpiry = 30000;
   const filter = (reaction, user) => {
-    return [artReaction, infoReaction, gifReaction].includes(reaction.emoji.name) && user.id === message.author.id;
+    return [artReaction, infoReaction, gifReaction, ...verReaction].includes(reaction.emoji.name) && user.id === message.author.id;
   };
 
-  const msg = await message.channel.send(getInfoEmbed(unit));
-  await msg.react(artReaction);
-  await msg.react(infoReaction);
-  await msg.react(gifReaction);
+  // add reactions based on available data
+  if(unit.GifURL) {
+    await msg.react(gifReaction);
+  }
+  if(unit.SpriteURL) {
+    await msg.react(artReaction);
+  }
+  if(result.versions) {
+    for(let i = 0; i < result.versions.length; i++) {
+      await msg.react(verReaction[i]);
+    }
+  }
+
+  // create reaction collector
   const collector = msg.createReactionCollector(filter, { max: 10, time: reactionExpiry });
   collector.on('collect', r => {
     if (r.emoji.name === artReaction) {
+      // replace info with art
       msg.edit(getArtEmbed(unit));
     }
-    if (r.emoji.name === infoReaction) {
-      msg.edit(getInfoEmbed(unit));
-    }
     if (r.emoji.name === gifReaction) {
+      // replace info with gif
       msg.edit(getGifEmbed(unit));
     }
+    if(result.versions && verReaction.indexOf(r.emoji.name) > -1) {
+      // replace info with version based on reaction
+      // replace unit data
+      unit = result.versions[verReaction.indexOf(r.emoji.name)];
+      // edit message with new data and pass all version information
+      msg.edit(getInfoEmbed(unit, result.versions));
+      // clear current reaction and add them again
+      msg.clearReactions().then(async () => {
+        if(unit.GifURL) {
+          await msg.react(gifReaction);
+        }
+        if(unit.SpriteURL) {
+          await msg.react(artReaction);
+        }
+        if(result.versions) {
+          for(let i = 0; i < result.versions.length; i++) {
+            await msg.react(verReaction[i]);
+          }
+        }
+      });
+    }
   });
-
   collector.on('end', () => msg.clearReactions());
 };
 
@@ -103,39 +155,45 @@ const character = {
     if (chara.length < 2) {
       return message.channel.send('Search too short please have a minimum of 2 letters!');
     }
-    const res = await axios.get(`${process.env.API_URL}/lookup?name=${encodeURI(chara)}`);
+    const res = await axios.get(`${process.env.API_URL}/lookup1.1?name=${encodeURI(chara)}`);
     const data = res.data;
 
-    if (data.length === 0) {
-      return message.channel.send('No character found!');
-    }
-
-    const unit = (function() {
-      if (data.length === 1) {
-        return data;
-      }
-
-      const nameExact = data.filter(char => char.EnName.toLowerCase() === chara);
-      if (nameExact.length > 0) {
-        return nameExact;
-      }
-      return data.map((char, index) => (`${parseInt(index, 10) + 1}: ${char.EnName} ${char.Weapon}`)).join('\n');
-    })();
-
-    if (typeof unit === 'string') {
-      const matches = await message.channel.send('Found potential matches:\n```' + unit + '```');
+    if(data.unit) {
+      // matches single result
+      sendMessage(data, message);
+    } else if(data.matches && data.matches.length > 0) {
+      // matches multiple results
+      // send potential matches to channel
+      const options = await message.channel.send('Found potential matches:\n```' +
+        data.matches.map((char, index) => (`${parseInt(index, 10) + 1}: ${char.EnName} ${char.Weapon}`)).join('\n')
+        + '```');
+      // start collector
       const collector = new MessageCollector(message.channel, m => m.author.id === message.author.id, { max: 1, time: 15000 });
+      // on user input
       collector.on('collect', m => {
+        // make sure data exists
         if(typeof data[m - 1] !== 'undefined') {
-          sendMessage(data[m - 1], message);
+          // data exists, send unit data over
+          sendMessage({ unit: data[m - 1] }, message);
+          // delete query and input
           Promise.all([
-            matches.delete(),
+            options.delete(),
             m.delete(),
           ]);
+        } else {
+          // user is not selecting potential match
+          options.edit('No potential match selected.');
+        }
+      });
+      // remove options on no user input
+      collector.on('end', collected => {
+        if(collected && collected.size === 0) {
+          options.edit('No potential match selected.');
         }
       });
     } else {
-      sendMessage(unit[0], message);
+      // no character found
+      return message.channel.send('No character found!');
     }
   },
 };

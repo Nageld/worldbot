@@ -182,7 +182,14 @@ const character = {
         // make sure data exists
         if (typeof data.matches[m - 1] !== 'undefined') {
           // data exists, send unit data over
-          sendMessage({ unit: data.matches[m - 1] }, message);
+          const unitData = { unit: data.matches[m - 1] };
+          // filter matches with JpName
+          const versionFromMatches = data.matches.filter(unit => unit.JpName === unitData.unit.JpName);
+          if(versionFromMatches.length > 1) {
+            // there are more than 1 match, assume it's an alt version
+            unitData.versions = versionFromMatches;
+          }
+          sendMessage(unitData, message);
           // delete query and input
           Promise.all([
             options.delete(),

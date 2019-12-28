@@ -64,6 +64,7 @@ const sendMessage = async (result, message) => {
   if (unit.GifURL) {
     await msg.react(gifReaction);
   }
+  await msg.react(infoReaction);
   if (unit.SpriteURL) {
     await msg.react(artReaction);
   }
@@ -84,7 +85,13 @@ const sendMessage = async (result, message) => {
       // replace info with gif
       msg.edit(getGifEmbed(unit));
     }
-    if (result.versions && verReaction.indexOf(r.emoji.name) > -1) {
+    if (r.emoji.name === infoReaction) {
+      // replace info with info
+      msg.edit(getInfoEmbed(unit, result.versions));
+    }
+    if (result.versions
+        && verReaction.indexOf(r.emoji.name) > -1
+        && result.versions[verReaction.indexOf(r.emoji.name)].EnName !== unit.EnName) {
       // replace info with version based on reaction
       // replace unit data
       unit = result.versions[verReaction.indexOf(r.emoji.name)];
@@ -95,6 +102,7 @@ const sendMessage = async (result, message) => {
         if (unit.GifURL) {
           await msg.react(gifReaction);
         }
+        await msg.react(infoReaction);
         if (unit.SpriteURL) {
           await msg.react(artReaction);
         }

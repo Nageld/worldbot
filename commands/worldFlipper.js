@@ -172,9 +172,9 @@ const character = {
       // on user input
       collector.on('collect', m => {
         // make sure data exists
-        if (typeof data[m - 1] !== 'undefined') {
+        if (typeof data.matches[m - 1] !== 'undefined') {
           // data exists, send unit data over
-          sendMessage({ unit: data[m - 1] }, message);
+          sendMessage({ unit: data.matches[m - 1] }, message);
           // delete query and input
           Promise.all([
             options.delete(),
